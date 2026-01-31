@@ -1,0 +1,73 @@
+import random
+import time
+def normal_search(ultra_matrix, index):
+    for j in range(0, len(ultra_matrix)):
+        for i in range(0, len(ultra_matrix[j])):
+            for ij in range(0, len(ultra_matrix[i])):
+                if ultra_matrix[j][i][ij] == search:
+                    system.append([j])
+                    system[index].append(i)
+                    system[index].append(ij)
+                    index += 1
+def bin_search_bin(ultra_matrix, index, search):
+    low = 0
+    for j in range(0, len(ultra_matrix)):
+        for i in range(0, len(ultra_matrix[j])):
+            high = len(ultra_matrix[j][i]) - 1
+            mid = len(ultra_matrix[j][i]) // 2
+            while ultra_matrix[j][i] != search and low <= high:
+                if search > bin(ultra_matrix[j][i][mid]):
+                    low = mid + 1
+                else:
+                     high = mid - 1
+                mid = (low + high) // 2
+
+                if low <= high:
+                    system.append([j])
+                    system[index].append(i)
+                    system[index].append(low)
+                    index += 1
+def bin_search(ultra_matrix, index, search):
+    low = 0
+    for j in range(0, len(ultra_matrix)):
+        for i in range(0, len(ultra_matrix[j])):
+            high = len(ultra_matrix[j][i]) - 1
+            mid = len(ultra_matrix[j][i]) // 2
+            while ultra_matrix[j][i] != search and low <= high:
+                if search > ultra_matrix[j][i][mid]:
+                    low = mid + 1
+                else:
+                     high = mid - 1
+                mid = (low + high) // 2
+
+                if low <= high:
+                    system.append([j])
+                    system[index].append(i)
+                    system[index].append(low)
+                    index += 1
+x = int(input("Введите размер списка\n"))
+y = int(input("Введите размер матрицы\n"))
+z = int(input("Введите размер 3д матрицы\n"))
+ultra_matrix = [[[random.randint(0, 10) for i in range(x)] for j in range(y)] for ij in range(z)]
+search = int(input())
+search_bin = bin(search)
+flag = 0
+system = []
+index = 0
+for matrix in ultra_matrix:
+    for list in matrix:
+        list.sort()
+
+start = time.process_time()
+bin_search(ultra_matrix, index, search)
+end = time.process_time()
+print(end-start)
+for matrix in ultra_matrix:
+    for list in matrix:
+        for elem in matrix:
+            for elm in elem:
+                elm = bin(elm)
+start = time.process_time()
+bin_search_bin(ultra_matrix, index, search_bin)
+end = time.process_time()
+print(end-start)
